@@ -23,7 +23,8 @@ return new class extends Migration
                 $table->string('assignee_id');
                 $table->string('unassigned_by')->nullable();
                 $table->unsignedSmallInteger('type')->default(Type::Owner->value);
-                $table->uuidMorphs('assignable');
+                $table->string('assignable_type');
+                $table->string('assignable_id');
                 $table->unsignedSmallInteger('status')->default(Status::Assigned->value);
                 $table->timestamp('expire_at')->nullable();
                 $table->string('note')->nullable();

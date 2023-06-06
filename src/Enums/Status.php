@@ -10,4 +10,5 @@ enum Status: int
 
     case Assigned = 31101;
     case Revoked = 31102;
+    case Expired = 31103;
 }
