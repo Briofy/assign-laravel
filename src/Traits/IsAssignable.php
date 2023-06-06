@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait IsAssignable
 {
-    public function assigns(): MorphMany
+    public function assignments(): MorphMany
     {
         return $this->morphMany(Assign::class, 'assignable');
     }
