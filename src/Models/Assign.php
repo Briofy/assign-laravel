@@ -2,6 +2,8 @@
 
 namespace Briofy\Assign\Models;
 
+use Briofy\Assign\Enums\Status;
+use Carbon\Carbon;
 use Database\Factories\AssignFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,6 +26,15 @@ class Assign extends Model
     protected static function newFactory()
     {
         return AssignFactory::new();
+    }
+
+    public function getStatusAttribute($value)
+    {
+        if (! is_null($this->expire_at) && Carbon::createFromFormat('Y-m-d H:i:s', $this->expire_at)->isPast()) {
+            return Status::Expired->value;
+        }
+
+        return $value;
     }
 
     public function assigee()
