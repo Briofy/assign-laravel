@@ -30,7 +30,10 @@ class AssignRepository extends AbstractRepository implements IAssignRepository
                 'assignable_id' => $assignableId,
                 'status' => Status::Assigned->value,
             ])
-            ->where('expire_at', '>', now()->format('Y-m-d H:i:s'))
+            ->where(function ($query) {
+                $query->where('expire_at', '>', now()->format('Y-m-d H:i:s'))
+                    ->orWhereNull('expire_at');
+            })
             ->exists();
     }
 
