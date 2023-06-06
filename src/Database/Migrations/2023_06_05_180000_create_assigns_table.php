@@ -30,7 +30,7 @@ return new class extends Migration
                 $table->timestamps();
                 $table->softDeletes();
 
-                $table->index(['assignable_type', 'assigned_by']);
+                $table->index(['assigned_by', 'assignable_type', 'assignable_id']);
         });
     }
 
